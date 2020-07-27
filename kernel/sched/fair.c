@@ -8098,10 +8098,10 @@ static void detach_task(struct task_struct *p, struct lb_env *env)
 	deactivate_task(env->src_rq, p, 0);
 #ifdef CONFIG_SCHED_WALT
 	double_lock_balance(env->src_rq, env->dst_rq);
-#endif
 	set_task_cpu(p, env->dst_cpu);
-#ifdef CONFIG_SCHED_WALT
 	double_unlock_balance(env->src_rq, env->dst_rq);
+#else
+	set_task_cpu(p, env->dst_cpu);
 #endif
 }
 
